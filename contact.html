@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Support - EduBridge</title>
+  <style>
+    :root {
+      --primary-blue: #2563eb;
+      --secondary-blue: #1e40af;
+      --light-bg: #f9fafb;
+      --dark-text: #1f2937;
+      --card-bg: #ffffff;
+      --button-radius: 8px;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--light-bg);
+      margin: 0;
+      padding: 2rem;
+      color: var(--dark-text);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .contact-container {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 800px;
+      width: 100%;
+    }
+    h1 {
+      text-align: center;
+      color: var(--primary-blue);
+      margin-bottom: 1rem;
+    }
+    p {
+      text-align: center;
+      color: #4b5563;
+      margin-bottom: 2rem;
+    }
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .info-box {
+      background: #f3f4f6;
+      padding: 1.2rem;
+      border-radius: var(--button-radius);
+      text-align: center;
+    }
+    .info-box h3 {
+      color: var(--secondary-blue);
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: var(--primary-blue);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <div class="contact-container">
+    <h1>Contact Support</h1>
+    <p>We’re here to help! Reach out to us via any of the following ways:</p>
+
+    <div class="contact-info">
+      <div class="info-box">
+        <h3>Email</h3>
+        <p><a href="mailto:support@edubridge.com">support@edubridge.com</a></p>
+      </div>
+      <div class="info-box">
+        <h3>Phone</h3>
+        <p><a href="tel:+11234567890">+1 123-456-7890</a></p>
+      </div>
+      <div class="info-box">
+        <h3>Office Address</h3>
+        <p>EduBridge HQ<br>123 Learning Street,<br>New York, NY 10001</p>
+      </div>
+      <div class="info-box">
+        <h3>Working Hours</h3>
+        <p>Monday - Friday<br>9:00 AM - 6:00 PM</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 EduBridge | Empowering Education for All
+  </footer>
+</body>
+</html>

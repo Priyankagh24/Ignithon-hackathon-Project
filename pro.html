@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduBridge - AI-Powered Inclusive Learning</title>
+    <style>
+
+
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2563eb;
+            --secondary-green: #10b981;
+            --accent-orange: #f59e0b;
+            --neutral-gray: #6b7280;
+            --light-bg: #f8fafc;
+            --dark-text: #1f2937;
+            --success-green: #059669;
+            --error-red: #dc2626;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+        }
+
+        /* Accessibility Features */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .high-contrast {
+            filter: contrast(150%);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .accessibility-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--accent-orange);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--neutral-gray);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Feature Cards */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--secondary-green);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Learning Dashboard */
+        .dashboard {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .language-selector {
+            padding: 0.5rem;
+            border: 2px solid var(--primary-blue);
+            border-radius: 6px;
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        /* AI Tutor Interface */
+        .ai-tutor {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .chat-interface {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .message.user {
+            background: var(--primary-blue);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.ai {
+            background: var(--light-bg);
+            color: var(--dark-text);
+            border: 1px solid #e5e7eb;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.ai.thinking {
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid var(--primary-blue);
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        /* Progress Tracking */
+        .progress-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .progress-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--light-bg);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-green), var(--primary-blue));
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+
+        /* Course Content */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .course-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
+            color: white;
+            padding: 1rem;
+        }
+
+        .course-body {
+            padding: 1rem;
+        }
+
+        .difficulty-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .difficulty-beginner {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .difficulty-intermediate {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .difficulty-advanced {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+            
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .accessibility-controls {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Dark Mode - Fixed Version */
+        body.dark-mode {
+            --light-bg: #1f2937;
+            --dark-text: #f9fafb;
+            background-color: #1f2937;
+            color: #f9fafb;
+        }
+
+        body.dark-mode .hero {
+            background: linear-gradient(135deg, #374151, #4b5563);
+        }
+
+        body.dark-mode .feature-card,
+        body.dark-mode .dashboard,
+        body.dark-mode .progress-card,
+        body.dark-mode .course-card {
+            background: #374151;
+            color: #f9fafb;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        body.dark-mode .chat-interface {
+            background: #374151;
+            color: #f9fafb;
+            border-color: #6b7280;
+        }
+
+        body.dark-mode .ai-tutor {
+            background: linear-gradient(135deg, #374151, #4b5563);
+        }
+
+        body.dark-mode .cultural-context {
+            background: #374151;
+            color: #f9fafb;
+        }
+
+        body.dark-mode .message.ai {
+            background: #4b5563;
+            color: #f9fafb;
+            border-color: #6b7280;
+        }
+
+        body.dark-mode .language-selector {
+            background: #374151;
+            color: #f9fafb;
+            border-color: #6b7280;
+        }
+
+        body.dark-mode .input-group input {
+            background: #374151;
+            color: #f9fafb;
+            border-color: #6b7280;
+        }
+
+        /* Animation for loading */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .loading {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes typing {
+            0% { content: '•'; }
+            33% { content: '••'; }
+            66% { content: '•••'; }
+            100% { content: '•'; }
+        }
+
+        .typing-indicator::after {
+            content: '•';
+            animation: typing 1.5s infinite;
+            color: var(--primary-blue);
+        }
+
+        /* Focus indicators for accessibility */
+        button:focus,
+        input:focus,
+        select:focus {
+            outline: 2px solid var(--accent-orange);
+            outline-offset: 2px;
+        }
+
+        /* Cultural adaptation indicators */
+        .cultural-context {
+            border-left: 4px solid var(--accent-orange);
+            background: #fef7ed;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+
+
+        
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent-orange);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-orange);
+            transform: translateY(-3px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .newsletter-input {
+            padding: 0.75rem;
+            border: none;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .btn-newsletter {
+            background: var(--accent-orange);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-newsletter:hover {
+            background: #d97706;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: white;
+        }
+
+        /* Dark mode footer adjustments */
+        body.dark-mode footer {
+            background: linear-gradient(135deg, #1e3a8a, #065f46);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-bottom-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+        /* Students Feedback Section */
+.feedback-section {
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.feedback-section h2 {
+  font-size: 1.8rem;
+  color: var(--primary-blue);
+  margin-bottom: 2rem;
+}
+
+.feedback-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.feedback-card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  max-width: 280px;
+  flex: 1;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feedback-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.feedback-card p {
+  font-style: italic;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.feedback-card h4 {
+  color: var(--secondary-blue);
+  font-weight: bold;
+}
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <span>🌍</span>
+                EduBridge
+            </div>
+            <div class="accessibility-controls">
+                <button class="btn btn-secondary" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                    🌙 Dark Mode
+                </button>
+                <button class="btn btn-secondary" onclick="toggleHighContrast()" aria-label="Toggle high contrast">
+                    ⚡ Contrast
+                </button>
+                <button class="btn btn-secondary" onclick="adjustFontSize()" aria-label="Increase font size">
+                    🔍 Font+
+                </button>
+                <select class="language-selector" onchange="changeLanguage(this.value)" aria-label="Select language">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="hi">हिंदी</option>
+                    <option value="ar">العربية</option>
+                    <option value="zh">中文</option>
+                </select>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1 id="main-title">AI-Powered Learning for Everyone</h1>
+                <p id="main-subtitle">Breaking barriers to quality education through inclusive, culturally-adaptive AI technology. Learn at your pace, in your language, from anywhere.</p>
+                <a href="dashboard.html" class="btn btn-primary">Take Quiz</a>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="features">
+                <div class="feature-card">
+                    <span class="feature-icon">🤖</span>
+                    <h3>AI-Powered Personalization</h3>
+                    <p>Advanced machine learning adapts to your learning style, pace, and cultural context. Get personalized lesson plans and real-time feedback.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🌐</span>
+                    <h3>Multilingual Support</h3>
+                    <p>Learn in over 50+ languages with culturally relevant examples and context-aware translations powered by advanced NLP.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">♿</span>
+                    <h3>Universal Accessibility</h3>
+                    <p>Built for everyone with screen reader support, keyboard navigation, high contrast modes, and adaptive interfaces.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">💰</span>
+                    <h3>Affordable & Scalable</h3>
+                    <p>Free tier with essential features, low-cost premium plans, and offline capability for limited internet access.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Real Impact Tracking</h3>
+                    <p>Measure learning outcomes with detailed analytics and progress tracking aligned with SDG 4 indicators.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🔒</span>
+                    <h3>Privacy-First Design</h3>
+                    <p>End-to-end encryption, minimal data collection, and transparent AI decision-making processes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="dashboard" class="container">
+            <div class="dashboard">
+                <div class="dashboard-header">
+                    <div class="user-profile">
+                        <div class="avatar">A</div>
+                        <div>
+                            <h3 id="welcome-text">Welcome back, Aisha!</h3>
+                            <p id="location-text">Learning from Nairobi, Kenya</p>
+                        </div>
+                    </div>
+                    <div class="user-stats">
+                        <span id="streak-text">🔥 7 day streak</span>
+                        <span id="points-text">⭐ 450 points</span>
+                    </div>
+                </div>
+
+                <div class="cultural-context">
+                    <h4>🌍 Culturally Adapted Content</h4>
+                    <p id="cultural-text">Today's math lesson uses examples from East African trade routes and local currency conversions to make learning more relevant to your context.</p>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-card">
+                        <h4>Mathematics</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                        <p>75% Complete - Grade 8 Algebra</p>
+                    </div>
+                    <div class="progress-card">
+                        <h4>Science</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%"></div>
+                        </div>
+                        <p>60% Complete - Biology Basics</p>
+                    </div>
+                    <div class="progress-card">
+                        <h4>Language Arts</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%"></div>
+                        </div>
+                        <p>90% Complete - Reading Comprehension</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="ai-tutor">
+                <h3>🤖 AI Learning Assistant</h3>
+                <p>Ask me anything about your studies. I adapt to your learning style and provide culturally relevant explanations.</p>
+                
+                <div class="chat-interface" id="chatInterface">
+                    <div class="message ai">
+                        <p>Hi! I'm your AI tutor. I notice you're working on algebra. Would you like me to explain linear equations using examples from your local context?</p>
+                    </div>
+                    <div class="message user">
+                        <p>Yes, please use examples I can relate to!</p>
+                    </div>
+                    <div class="message ai">
+                        <p>Great! Let's say a matatu (shared taxi) charges 50 KES base fare plus 10 KES per kilometer. If the total fare is y and distance is x, then: y = 50 + 10x. This is a linear equation where 50 is the y-intercept and 10 is the slope!</p>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" id="chatInput" placeholder="Ask me anything about your studies..." aria-label="Chat with AI tutor">
+                    <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <h2>📚 Available Courses</h2>
+            <div class="course-grid">
+                <div class="course-card">
+                    <div class="course-header">
+                        <h4>Basic Mathematics</h4>
+                        <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                    </div>
+                    <div class="course-body">
+                        <p>Foundation math concepts with local examples and practical applications.</p>
+                        <p><strong>Duration:</strong> 4 weeks</p>
+                        <p><strong>Language:</strong> Available in 12 languages</p>
+                        <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;" onclick="window.location.href='basicMathematics.html'">Start Course</button>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-header">
+                        <h4>Digital Literacy</h4>
+                        <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                    </div>
+                    <div class="course-body">
+                        <p>Essential computer skills and internet safety for the modern world.</p>
+                        <p><strong>Duration:</strong> 3 weeks</p>
+                        <p><strong>Language:</strong> Available in 15 languages</p>
+                        <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;" onclick="window.location.href='DigitalLiteracy.html'">Start Course</button>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-header">
+                        <h4>Environmental Science</h4>
+                        <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                    </div>
+                    <div class="course-body">
+                        <p>Climate change and sustainability with regional case studies.</p>
+                        <p><strong>Duration:</strong> 6 weeks</p>
+                        <p><strong>Language:</strong> Available in 10 languages</p>
+                        <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;" onclick="window.location.href='EnvironmentalScience.html'">Start Course</button>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-header">
+                        <h4>Entrepreneurship</h4>
+                        <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                    </div>
+                    <div class="course-body">
+                        <p>Start your own business with locally-relevant strategies and examples.</p>
+                        <p><strong>Duration:</strong> 8 weeks</p>
+                        <p><strong>Language:</strong> Available in 8 languages</p>
+                        <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;" onclick="window.location.href='enterprenurship.html'">Start Course</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" style="margin: 4rem 0; text-align: center; background: white; padding: 3rem; border-radius: 12px;">
+            <h2>📊 Our Impact on SDG 4</h2>
+            <div class="progress-section">
+                <div class="progress-card">
+                    <h4>🎓 Students Reached</h4>
+                    <p style="font-size: 2rem; color: var(--primary-blue); font-weight: bold;">2.3M+</p>
+                    <p>Learners across 50+ countries</p>
+                </div>
+                <div class="progress-card">
+                    <h4>📈 Completion Rate</h4>
+                    <p style="font-size: 2rem; color: var(--secondary-green); font-weight: bold;">87%</p>
+                    <p>Above industry average of 60%</p>
+                </div>
+                <div class="progress-card">
+                    <h4>🌍 Languages Supported</h4>
+                    <p style="font-size: 2rem; color: var(--accent-orange); font-weight: bold;">52</p>
+                    <p>Including indigenous languages</p>
+                </div>
+                <div class="progress-card">
+                    <h4>💰 Cost Reduction</h4>
+                    <p style="font-size: 2rem; color: var(--success-green); font-weight: bold;">90%</p>
+                    <p>Compared to traditional education</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+        <!-- Students Feedback Section -->
+    <section class="feedback-section">
+      <h2>What Our Students Say</h2>
+      <div class="feedback-container">
+        
+        <div class="feedback-card">
+          <p>"This course made math so much easier! I loved the practical examples and clear explanations."</p>
+          <h4>- Aisha K.</h4>
+        </div>
+
+        <div class="feedback-card">
+          <p>"I finally understand fractions and percentages. The interactive style kept me engaged."</p>
+          <h4>- Rahul M.</h4>
+        </div>
+
+        <div class="feedback-card">
+          <p>"The course gave me confidence to solve problems on my own. Highly recommend EduBridge!"</p>
+          <h4>- Emily S.</h4>
+        </div>
+
+      </div>
+    </section>
+
+
+     <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About EduBridge</h3>
+                <p>EduBridge is committed to breaking down barriers to quality education through AI-powered, culturally adaptive learning solutions for students worldwide.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><span>📘</span></a>
+                    <a href="#" aria-label="Twitter"><span>🐦</span></a>
+                    <a href="#" aria-label="Instagram"><span>📸</span></a>
+                    <a href="#" aria-label="LinkedIn"><span>💼</span></a>
+                    <a href="#" aria-label="YouTube"><span>📺</span></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><span>📚</span> All Courses</a></li>
+                    <li><a href="#"><span>🎓</span> For Students</a></li>
+                    <li><a href="#"><span>🏫</span> For Educators</a></li>
+                    <li><a href="#"><span>🤝</span> Partnerships</a></li>
+                    <li><a href="#"><span>📰</span> Blog & News</a></li>
+                    <li><a href="#"><span>🏆</span> Success Stories</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <div>EdTech Innovation Hub, 123 Learning Street, Nairobi, Kenya</div>
+                    </div>
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <div>+254 700 123 456</div>
+                    </div>
+                    <div class="contact-item">
+                        <span>✉️</span>
+                        <div>info@edubridge.org</div>
+                    </div>
+                    <div class="contact-item">
+                        <span>🌐</span>
+                        <div>www.edubridge.org</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for updates on new courses, features, and educational resources.</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Your email address" aria-label="Your email address">
+                    <button type="submit" class="btn-newsletter">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>© 2023 EduBridge. All rights reserved.</div>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Accessibility Statement</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Application State
+        let appState = {
+            currentLanguage: 'en',
+            darkMode: false,
+            highContrast: false,
+            fontSize: 16,
+            user: {
+                name: 'Aisha',
+                location: 'Nairobi, Kenya',
+                streak: 7,
+                points: 450
+            },
+            culturalContext: 'east-africa'
+        };
+
+        // Translations object for multilingual support
+        const translations = {
+            en: {
+                'main-title': 'AI-Powered Learning for Everyone',
+                'main-subtitle': 'Breaking barriers to quality education through inclusive, culturally-adaptive AI technology. Learn at your pace, in your language, from anywhere.',
+                'welcome-text': 'Welcome back, Aisha!',
+                'location-text': 'Learning from Nairobi, Kenya',
+                'streak-text': '🔥 7 day streak',
+                'points-text': '⭐ 450 points',
+                'cultural-text': 'Today\'s math lesson uses examples from East African trade routes and local currency conversions to make learning more relevant to your context.'
+            },
+            es: {
+                'main-title': 'Aprendizaje Impulsado por IA para Todos',
+                'main-subtitle': 'Rompiendo barreras hacia una educación de calidad a través de tecnología IA inclusiva y culturalmente adaptativa.',
+                'welcome-text': '¡Bienvenida de vuelta, Aisha!',
+                'location-text': 'Aprendiendo desde Nairobi, Kenia',
+                'streak-text': '🔥 7 días seguidos',
+                'points-text': '⭐ 450 puntos',
+                'cultural-text': 'La lección de matemáticas de hoy usa ejemplos de rutas comerciales del Este de África y conversiones de moneda local.'
+            },
+            fr: {
+                'main-title': 'Apprentissage IA pour Tous',
+                'main-subtitle': 'Briser les barrières vers une éducation de qualité grâce à une technologie IA inclusive et culturellement adaptative.',
+                'welcome-text': 'Bon retour, Aisha!',
+                'location-text': 'Apprentissage depuis Nairobi, Kenya',
+                'streak-text': '🔥 7 jours consécutifs',
+                'points-text': '⭐ 450 points',
+                'cultural-text': 'La leçon de mathématiques d\'aujourd\'hui utilise des exemples des routes commerciales de l\'Afrique de l\'Est.'
+            },
+            hi: {
+                'main-title': 'सभी के लिए AI-संचालित शिक्षा',
+                'main-subtitle': 'समावेशी, सांस्कृतिक रूप से अनुकूल AI तकनीक के माध्यम से गुणवत्तापूर्ण शिक्षा की बाधाओं को तोड़ना।',
+                'welcome-text': 'वापसी पर स्वागत, आइशा!',
+                'location-text': 'नैरोबी, केन्या से सीख रहे हैं',
+                'streak-text': '🔥 7 दिन की लकीर',
+                'points-text': '⭐ 450 अंक',
+                'cultural-text': 'आज का गणित पाठ पूर्वी अफ़्रीकी व्यापार मार्गों के उदाहरण उपयोग करता है।'
+            }
+        };
+
+        // Cultural contexts for adaptive learning
+        const culturalContexts = {
+            'east-africa': {
+                currency: 'KES',
+                examples: ['matatu transport', 'maize farming', 'safari tourism'],
+                colors: ['#1565C0', '#2E7D32', '#F57C00'],
+                culturalNotes: 'East African context with Swahili influences'
+            },
+            'south-asia': {
+                currency: 'INR',
+                examples: ['rickshaw travel', 'rice farming', 'monsoon patterns'],
+                colors: ['#FF9800', '#4CAF50', '#2196F3'],
+                culturalNotes: 'South Asian context with diverse languages'
+            },
+            'latin-america': {
+                currency: 'USD',
+                examples: ['bus systems', 'coffee farming', 'carnival economics'],
+                colors: ['#E91E63', '#FF5722', '#8BC34A'],
+                culturalNotes: 'Latin American context with Spanish/Portuguese influences'
+            }
+        };
+
+        // Enhanced AI-powered learning engine
+        class AILearningEngine {
+            constructor() {
+                this.learningProfile = {
+                    visualLearner: 0.7,
+                    auditoryLearner: 0.3,
+                    kinestheticLearner: 0.5,
+                    currentLevel: 'intermediate',
+                    weakAreas: ['algebra', 'geometry'],
+                    strongAreas: ['arithmetic', 'word-problems'],
+                    culturalContext: appState.culturalContext
+                };
+
+                // Knowledge base for different subjects
+                this.knowledgeBase = {
+                    math: {
+                        algebra: {
+                            'linear equations': 'Linear equations show relationships between variables. Like if a matatu charges base fare + cost per km.',
+                            'quadratic equations': 'Quadratic equations involve x². Think of projectile motion like throwing a ball.',
+                            'systems of equations': 'Multiple equations working together, like planning costs for multiple transport options.',
+                            'graphing': 'Visual representation of equations. Like mapping matatu routes on a coordinate system.'
+                        },
+                        geometry: {
+                            'area and perimeter': 'Calculating space and boundaries. Like finding farm plot sizes or building materials needed.',
+                            'triangles': 'Three-sided shapes everywhere - from roof structures to navigation triangulation.',
+                            'circles': 'Round shapes with special properties. Like wheel circumference or circular farm irrigation.'
+                        },
+                        statistics: {
+                            'mean and median': 'Finding averages and middle values. Like average rainfall or median income in your region.',
+                            'probability': 'Likelihood of events. Like weather patterns or crop yield predictions.',
+                            'data analysis': 'Making sense of information. Like analyzing market prices or population trends.'
+                        }
+                    },
+                    science: {
+                        biology: {
+                            'cell structure': 'Basic units of life. All living things from baobab trees to zebras are made of cells.',
+                            'ecosystems': 'How living things interact. Like the relationships in savanna grasslands.',
+                            'genetics': 'How traits pass from parents to offspring. Like why some maize varieties grow better.'
+                        },
+                        chemistry: {
+                            'atoms and molecules': 'Tiny building blocks of matter. Everything from water to soil is made of these.',
+                            'chemical reactions': 'How substances change. Like digestion or photosynthesis in plants.',
+                            'acids and bases': 'Different types of substances. Like citrus fruits (acidic) vs soap (basic).'
+                        },
+                        physics: {
+                            'motion': 'How things move. From walking speed to vehicle acceleration.',
+                            'energy': 'The ability to do work. Solar, wind, and human energy powering daily life.',
+                            'waves': 'Repeating patterns. Sound waves, light waves, and radio waves for communication.'
+                        }
+                    },
+                    languages: {
+                        english: {
+                            'grammar': 'Rules for clear communication. Like verb tenses and sentence structure.',
+                            'vocabulary': 'Building word knowledge for better expression and understanding.',
+                            'reading comprehension': 'Understanding written text deeply and making connections.'
+                        },
+                        writing: {
+                            'essays': 'Organized thoughts on paper. Structure your ideas clearly with intro, body, conclusion.',
+                            'creative writing': 'Using imagination to tell stories that engage readers.',
+                            'technical writing': 'Clear, precise communication for instructions or explanations.'
+                        }
+                    },
+                    social_studies: {
+                        history: {
+                            'local history': 'Understanding your community\'s past and how it shapes the present.',
+                            'world history': 'Major events and how different cultures developed and interacted.',
+                            'economics': 'How people produce, distribute, and use goods and services.'
+                        },
+                        geography: {
+                            'physical geography': 'Land features, climate, and natural resources in your region and beyond.',
+                            'human geography': 'How people live, work, and move around different places.',
+                            'maps and navigation': 'Understanding location, direction, and spatial relationships.'
+                        }
+                    }
+                };
+
+                // Conversation context for more natural responses
+                this.conversationHistory = [];
+                this.currentTopic = null;
+            }
+
+            // Enhanced question analysis
+            analyzeQuestion(question) {
+                const lowercaseQ = question.toLowerCase();
+                
+                // Subject detection
+                const subjects = {
+                    math: ['math', 'algebra', 'geometry', 'equation', 'solve', 'calculate', 'number', 'graph', 'statistics', 'probability'],
+                    science: ['science', 'biology', 'chemistry', 'physics', 'cell', 'atom', 'energy', 'experiment'],
+                    english: ['english', 'grammar', 'writing', 'essay', 'vocabulary', 'reading', 'story'],
+                    history: ['history', 'past', 'culture', 'civilization', 'timeline', 'events'],
+                    geography: ['geography', 'map', 'location', 'climate', 'region', 'country']
+                };
+
+                let detectedSubject = 'general';
+                let confidence = 0;
+
+                for (const [subject, keywords] of Object.entries(subjects)) {
+                    const matches = keywords.filter(keyword => lowercaseQ.includes(keyword)).length;
+                    if (matches > confidence) {
+                        confidence = matches;
+                        detectedSubject = subject;
+                    }
+                }
+
+                // Difficulty detection
+                const difficultyIndicators = {
+                    basic: ['basic', 'simple', 'easy', 'beginner', 'start', 'introduction'],
+                    intermediate: ['explain', 'how', 'why', 'example', 'show me'],
+                    advanced: ['prove', 'derive', 'analyze', 'complex', 'advanced', 'difficult']
+                };
+
+                let difficulty = 'intermediate';
+                for (const [level, indicators] of Object.entries(difficultyIndicators)) {
+                    if (indicators.some(indicator => lowercaseQ.includes(indicator))) {
+                        difficulty = level;
+                        break;
+                    }
+                }
+
+                return {
+                    subject: detectedSubject,
+                    difficulty: difficulty,
+                    confidence: confidence,
+                    isQuestion: lowercaseQ.includes('?') || lowercaseQ.startsWith('what') || lowercaseQ.startsWith('how') || lowercaseQ.startsWith('why'),
+                    needsExample: lowercaseQ.includes('example') || lowercaseQ.includes('show me')
+                };
+            }
+
+            // Generate culturally relevant response
+            generatePersonalizedContent(question) {
+                const analysis = this.analyzeQuestion(question);
+                const context = culturalContexts[this.learningProfile.culturalContext];
+                
+                // Store conversation context
+                this.conversationHistory.push({
+                    question: question,
+                    analysis: analysis,
+                    timestamp: new Date()
+                });
+
+                // Keep only last 5 conversations for context
+                if (this.conversationHistory.length > 5) {
+                    this.conversationHistory = this.conversationHistory.slice(-5);
+                }
+
+                // Try to find a specific answer first
+                let response = this.getSpecificAnswer(question, context);
+                
+                // If no specific answer found, be honest about limitations
+                if (!response) {
+                    response = `I apologize, but I'm not trained enough to provide a complete answer to "${question}". My current knowledge is limited to basic concepts in mathematics, science, and language arts with culturally relevant examples. 
+
+Could you try asking about:
+• Basic math (like solving simple equations: 2x + 5 = 15)
+• Elementary science (like "What is photosynthesis?")  
+• Grammar basics (like "What's the difference between past and present tense?")
+• Simple cultural adaptations of these topics
+
+I'm continuously learning to better serve students in ${context.culturalNotes}.`;
+                }
+
+                return response;
+            }
+
+            getSpecificAnswer(question, context) {
+                const q = question.toLowerCase().trim();
+                
+                // Mathematics - Specific problem solving
+                if (q.includes('solve') && (q.includes('equation') || q.includes('x'))) {
+                    // Extract equation if possible
+                    const eqMatch = question.match(/(\d*x\s*[+\-]\s*\d+\s*=\s*\d+)|(\d+\s*[+\-]\s*\d*x\s*=\s*\d+)/);
+                    if (eqMatch) {
+                        return this.solveLinearEquation(eqMatch[0], context);
+                    }
+                    return `I can help solve linear equations! Please provide a specific equation like "2x + 5 = 15" or "3x - 7 = 11". 
+
+Here's how to solve any linear equation:
+1. Isolate terms with x on one side
+2. Move constants to the other side
+3. Divide both sides by the coefficient of x
+
+Example using ${context.currency}: If matatu fare is ${context.currency} 50 + ${context.currency} 10x = ${context.currency} 120, then 10x = 70, so x = 7 kilometers.`;
+                }
+
+                // Basic arithmetic
+                if (q.match(/what\s+is\s+\d+\s*[\+\-\*\/]\s*\d+/)) {
+                    const mathMatch = q.match(/(\d+)\s*([\+\-\*\/])\s*(\d+)/);
+                    if (mathMatch) {
+                        return this.solveArithmetic(mathMatch[1], mathMatch[2], mathMatch[3], context);
+                    }
+                }
+
+                // Percentage calculations
+                if (q.includes('percent') || q.includes('%')) {
+                    if (q.includes('what is') && q.includes('of')) {
+                        return `To find a percentage of a number:
+1. Convert percentage to decimal (divide by 100)
+2. Multiply by the number
+
+Example: 15% of ${context.currency} 200 = 0.15 × 200 = ${context.currency} 30
+
+This is useful for calculating tips at restaurants or discounts when shopping in your area.`;
+                    }
+                }
+
+                // Science - Basic concepts
+                if (q.includes('photosynthesis')) {
+                    return `Photosynthesis is how plants make food using sunlight. Here's the process:
+
+**What happens:**
+• Plants take in CO₂ from air through leaves
+• Roots absorb water from soil  
+• Chlorophyll in leaves captures sunlight
+• These combine to make glucose (sugar) + oxygen
+
+**Chemical equation:** 6CO₂ + 6H₂O + sunlight → C₆H₁₂O₆ + 6O₂
+
+**Local example:** The ${context.examples[1]} in your region use photosynthesis to grow. More sunlight = better growth, which is why farmers plan planting seasons around weather patterns.
+
+This process is why plants are green and why we need trees for clean air!`;
+                }
+
+                if (q.includes('cell') && (q.includes('what') || q.includes('structure'))) {
+                    return `A cell is the basic unit of all living things. Think of it like a tiny factory!
+
+**Main parts:**
+• **Cell membrane:** Controls what goes in/out (like a security gate)
+• **Nucleus:** Controls the cell (like a manager's office)
+• **Cytoplasm:** Jelly-like substance where work happens
+• **Mitochondria:** Powerhouses that make energy
+
+**Plant cells also have:**
+• **Cell wall:** Strong outer layer for support
+• **Chloroplasts:** Where photosynthesis happens (makes plants green)
+
+Every living thing around you - from the smallest insects to the largest baobab trees - is made of these tiny cells working together!`;
+                }
+
+                // English/Grammar
+                if (q.includes('past tense') || q.includes('present tense')) {
+                    return `**Present Tense:** Actions happening now or regularly
+• I walk to school (habitual)
+• She is walking (happening now)
+• They walk every day
+
+**Past Tense:** Actions that already finished
+• I walked to school yesterday
+• She walked to the market
+• They walked for two hours
+
+**Local examples:**
+• Present: "The matatu arrives at 8 AM daily"
+• Past: "The matatu arrived late yesterday"
+
+**Tip:** Regular verbs add -ed for past tense, but irregular verbs change completely (go → went, eat → ate).`;
+                }
+
+                if (q.includes('difference between') && q.includes('mean') && q.includes('median')) {
+                    return `**Mean:** Add all numbers and divide by how many numbers you have
+**Median:** The middle number when arranged in order
+
+**Example with ${context.examples[2]} visitor numbers:**
+Daily visitors: 12, 15, 18, 20, 25, 30, 100
+
+**Mean:** (12+15+18+20+25+30+100) ÷ 7 = 220 ÷ 7 = 31.4 visitors
+**Median:** Middle number = 20 visitors (4th position out of 7)
+
+**When to use:**
+• Mean: Good for normal data
+• Median: Better when there are extreme values (like the 100 visitors day)
+
+The median (20) better represents typical attendance than the mean (31.4) because of that one very busy day.`;
+                }
+
+                // Fractions
+                if (q.includes('fraction')) {
+                    return `Fractions represent parts of a whole!
+
+**Basic concept:** 3/4 means 3 parts out of 4 total parts
+
+**Local example:** If you buy a ${context.examples[1]} plot:
+• 1/4 = one quarter of the plot
+• 1/2 = half the plot  
+• 3/4 = three quarters of the plot
+
+**Adding fractions:**
+Same denominator: 1/4 + 2/4 = 3/4
+Different denominators: 1/2 + 1/4 = 2/4 + 1/4 = 3/4
+
+**Real use:** If ${context.currency} 100 is split among 4 people, each gets 100 ÷ 4 = ${context.currency} 25 (or 1/4 of the total).`;
+                }
+
+                // Area and perimeter
+                if (q.includes('area') || q.includes('perimeter')) {
+                    return `**Area:** Space inside a shape (measured in square units)
+**Perimeter:** Distance around the outside (measured in linear units)
+
+**Rectangle formulas:**
+• Area = length × width
+• Perimeter = 2(length + width)
+
+**Example:** ${context.examples[1]} plot that's 20m × 15m
+• Area = 20 × 15 = 300 square meters (for planting)
+• Perimeter = 2(20 + 15) = 70 meters (for fencing)
+
+**Circle formulas:**
+• Area = π × r² (π ≈ 3.14)  
+• Circumference = 2 × π × r
+
+This helps farmers plan crops and materials needed for fencing!`;
+                }
+
+                // Return null if no specific answer found
+                return null;
+            }
+
+            solveLinearEquation(equation, context) {
+                // Simple linear equation solver for educational purposes
+                try {
+                    const eq = equation.replace(/\s/g, '');
+                    
+                    // Handle formats like "2x+5=15" or "3x-7=11"
+                    const match = eq.match(/(\d*)x([+\-])(\d+)=(\d+)/);
+                    if (match) {
+                        const coefficient = match[1] === '' ? 1 : parseInt(match[1]);
+                        const operator = match[2];
+                        const constant = parseInt(match[3]);
+                        const result = parseInt(match[4]);
+                        
+                        let x;
+                        if (operator === '+') {
+                            x = (result - constant) / coefficient;
+                        } else {
+                            x = (result + constant) / coefficient;
+                        }
+                        
+                        return `**Solving ${equation}:**
+
+Step 1: Isolate the x term
+${operator === '+' ? `${coefficient}x = ${result} - ${constant}` : `${coefficient}x = ${result} + ${constant}`}
+${coefficient}x = ${operator === '+' ? result - constant : result + constant}
+
+Step 2: Solve for x
+x = ${operator === '+' ? result - constant : result + constant} ÷ ${coefficient}
+**x = ${x}**
+
+**Check:** ${coefficient} × ${x} ${operator} ${constant} = ${coefficient * x + (operator === '+' ? constant : -constant)} ✓
+
+**Real-world example:** If a ${context.examples[0]} charges ${context.currency} ${constant} base fare plus ${context.currency} ${coefficient} per km, and total cost is ${context.currency} ${result}, then distance traveled is ${x} km.`;
+                    }
+                } catch (e) {
+                    return null;
+                }
+                return null;
+            }
+
+            solveArithmetic(num1, operator, num2, context) {
+                const n1 = parseInt(num1);
+                const n2 = parseInt(num2);
+                let result;
+                let operation;
+
+                switch(operator) {
+                    case '+':
+                        result = n1 + n2;
+                        operation = 'addition';
+                        break;
+                    case '-':
+                        result = n1 - n2;
+                        operation = 'subtraction';
+                        break;
+                    case '*':
+                        result = n1 * n2;
+                        operation = 'multiplication';
+                        break;
+                    case '/':
+                        if (n2 === 0) return "Cannot divide by zero!";
+                        result = n1 / n2;
+                        operation = 'division';
+                        break;
+                    default:
+                        return null;
+                }
+
+                return `**${n1} ${operator} ${n2} = ${result}**
+
+This ${operation} could represent: ${context.currency} ${n1} ${operator === '+' ? 'plus' : operator === '-' ? 'minus' : operator === '*' ? 'multiplied by' : 'divided by'} ${n2} = ${context.currency} ${result}
+
+Useful for calculating costs, quantities, or measurements in daily life!`;
+            }
+
+            addCulturalExample(subject, context) {
+                const examples = {
+                    math: ` Here's a practical example: If you're planning to buy supplies for ${context.examples[1]}, you need to calculate costs, quantities, and potential profits using mathematical formulas.`,
+                    
+                    science: ` For instance, understanding the science behind ${context.examples[1]} can help improve crop yields and sustainability.`,
+                    
+                    english: ` Try writing a descriptive paragraph about ${context.examples[2]} in your area - this practices vocabulary, sentence structure, and cultural knowledge simultaneously.`,
+                    
+                    general: ` This connects directly to ${context.examples[Math.floor(Math.random() * 3)]} that you might encounter in your daily life.`
+                };
+                
+                return examples[subject] || examples.general;
+            }
+
+            // Enhanced progress assessment
+            assessLearningProgress(responses) {
+                const accuracy = responses.filter(r => r.correct).length / responses.length;
+                const avgTime = responses.reduce((total, r) => total + r.timeSpent, 0) / responses.length;
+                
+                const assessment = {
+                    accuracy: accuracy,
+                    efficiency: accuracy / (avgTime / 1000),
+                    recommendation: accuracy > 0.8 ? 'advance' : accuracy > 0.6 ? 'practice' : 'review',
+                    culturalRelevance: 0.9, // Simulated - would be calculated based on engagement
+                    nextTopics: this.suggestNextTopics(accuracy)
+                };
+
+                return assessment;
+            }
+
+            suggestNextTopics(accuracy) {
+                if (accuracy > 0.8) {
+                    return ['Advanced problem solving', 'Real-world applications', 'Project-based learning'];
+                } else if (accuracy > 0.6) {
+                    return ['Practice exercises', 'Concept reinforcement', 'Worked examples'];
+                } else {
+                    return ['Basic concepts review', 'Step-by-step guidance', 'Foundation building'];
+                }
+            }
+        }
+
+        const aiEngine = new AILearningEngine();
+
+        // Enhanced chat functionality with typing indicators
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const chatInterface = document.getElementById('chatInterface');
+            
+            if (input.value.trim()) {
+                // Add user message
+                const userMessage = document.createElement('div');
+                userMessage.className = 'message user';
+                userMessage.innerHTML = `<p>${input.value}</p>`;
+                chatInterface.appendChild(userMessage);
+                
+                // Store user question
+                const userQuestion = input.value.trim();
+                
+                // Show typing indicator
+                const typingIndicator = document.createElement('div');
+                typingIndicator.className = 'message ai thinking';
+                typingIndicator.innerHTML = '<p class="typing-indicator">AI is thinking</p>';
+                chatInterface.appendChild(typingIndicator);
+                
+                // Scroll to bottom
+                chatInterface.scrollTop = chatInterface.scrollHeight;
+                
+                // Clear input immediately for better UX
+                input.value = '';
+                
+                // Generate AI response with realistic delay
+                setTimeout(() => {
+                    // Remove typing indicator
+                    chatInterface.removeChild(typingIndicator);
+                    
+                    // Generate personalized response
+                    const aiResponse = aiEngine.generatePersonalizedContent(userQuestion);
+                    
+                    // Add AI message
+                    const aiMessage = document.createElement('div');
+                    aiMessage.className = 'message ai';
+                    aiMessage.innerHTML = `<p>${aiResponse}</p>`;
+                    chatInterface.appendChild(aiMessage);
+                    
+                    // Scroll to bottom
+                    chatInterface.scrollTop = chatInterface.scrollHeight;
+                    
+                    // Announce new message for screen readers
+                    announceToScreenReader('AI tutor responded');
+                    
+                }, Math.random() * 2000 + 1000); // Random delay between 1-3 seconds for realism
+            }
+        }
+
+        // Complete dark mode toggle functionality
+        function toggleDarkMode() {
+            appState.darkMode = !appState.darkMode;
+            document.body.classList.toggle('dark-mode', appState.darkMode);
+            
+            // Update button text to reflect current state
+            const darkModeButton = document.querySelector('button[onclick="toggleDarkMode()"]');
+            if (darkModeButton) {
+                darkModeButton.innerHTML = appState.darkMode ? '☀️ Light Mode' : '🌙 Dark Mode';
+            }
+            
+            // Save preference (in real app, this would persist to backend)
+            localStorage.setItem('darkMode', appState.darkMode);
+            
+            // Announce change for screen readers
+            announceToScreenReader(`Dark mode ${appState.darkMode ? 'enabled' : 'disabled'}`);
+        }
+
+        function toggleHighContrast() {
+            appState.highContrast = !appState.highContrast;
+            document.body.classList.toggle('high-contrast', appState.highContrast);
+            
+            // Save preference
+            localStorage.setItem('highContrast', appState.highContrast);
+            
+            // Announce change for screen readers
+            announceToScreenReader(`High contrast ${appState.highContrast ? 'enabled' : 'disabled'}`);
+        }
+
+        function adjustFontSize() {
+            appState.fontSize += 2;
+            if (appState.fontSize > 24) appState.fontSize = 16;
+            
+            document.documentElement.style.fontSize = `${appState.fontSize}px`;
+            localStorage.setItem('fontSize', appState.fontSize);
+            announceToScreenReader(`Font size adjusted to ${appState.fontSize}px`);
+        }
+
+        // Helper function for screen reader announcements
+        function announceToScreenReader(message) {
+            const announcement = document.createElement('div');
+            announcement.setAttribute('aria-live', 'polite');
+            announcement.setAttribute('aria-atomic', 'true');
+            announcement.className = 'sr-only';
+            announcement.textContent = message;
+            
+            document.body.appendChild(announcement);
+            
+            // Remove the announcement after a brief delay
+            setTimeout(() => {
+                if (document.body.contains(announcement)) {
+                    document.body.removeChild(announcement);
+                }
+            }, 1000);
+        }
+
+        // Enhanced language change functionality
+        function changeLanguage(lang) {
+            appState.currentLanguage = lang;
+            
+            // Update text content based on selected language
+            const translation = translations[lang];
+            if (translation) {
+                Object.keys(translation).forEach(key => {
+                    const element = document.getElementById(key);
+                    if (element) {
+                        element.textContent = translation[key];
+                    }
+                });
+            }
+            
+            // Update AI's cultural context based on language
+            const languageCulturalMap = {
+                'en': 'east-africa',
+                'es': 'latin-america',
+                'hi': 'south-asia',
+                'fr': 'east-africa', // Francophone Africa
+                'ar': 'middle-east',
+                'zh': 'east-asia'
+            };
+            
+            if (languageCulturalMap[lang]) {
+                appState.culturalContext = languageCulturalMap[lang];
+                aiEngine.learningProfile.culturalContext = appState.culturalContext;
+            }
+            
+            localStorage.setItem('language', lang);
+            announceToScreenReader(`Language changed to ${lang}`);
+        }
+
+        // Initialize app with saved preferences
+        function initializeApp() {
+            // Load saved preferences
+            const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+            const savedHighContrast = localStorage.getItem('highContrast') === 'true';
+            const savedFontSize = parseInt(localStorage.getItem('fontSize')) || 16;
+            const savedLanguage = localStorage.getItem('language') || 'en';
+            
+            // Apply saved preferences
+            if (savedDarkMode) {
+                appState.darkMode = true;
+                document.body.classList.add('dark-mode');
+                const darkModeButton = document.querySelector('button[onclick="toggleDarkMode()"]');
+                if (darkModeButton) {
+                    darkModeButton.innerHTML = '☀️ Light Mode';
+                }
+            }
+            
+            if (savedHighContrast) {
+                appState.highContrast = true;
+                document.body.classList.add('high-contrast');
+            }
+            
+            if (savedFontSize !== 16) {
+                appState.fontSize = savedFontSize;
+                document.documentElement.style.fontSize = `${savedFontSize}px`;
+            }
+            
+            if (savedLanguage !== 'en') {
+                const languageSelector = document.querySelector('.language-selector');
+                if (languageSelector) {
+                    languageSelector.value = savedLanguage;
+                    changeLanguage(savedLanguage);
+                }
+            }
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+         
+            initializeApp();
+            
+           
+            const chatInput = document.getElementById('chatInput');
+            if (chatInput) {
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        sendMessage();
+                    }
+                });
+                
+                
+                chatInput.addEventListener('focus', function() {
+                    announceToScreenReader('Chat input focused. Press Enter to send message.');
+                });
+            }
+            
+           
+            const courseCards = document.querySelectorAll('.course-card button');
+            courseCards.forEach((button, index) => {
+                button.addEventListener('click', function() {
+                    const courseName = this.closest('.course-card').querySelector('h4').textContent;
+                    announceToScreenReader(`Starting course: ${courseName}`);
+                    
+                   
+                    const chatInterface = document.getElementById('chatInterface');
+                    const aiMessage = document.createElement('div');
+                    aiMessage.className = 'message ai';
+                    aiMessage.innerHTML = `<p>Great choice! I see you're interested in ${courseName}. This course is designed with your cultural context in mind. What specific aspects would you like to focus on first?</p>`;
+                    chatInterface.appendChild(aiMessage);
+                    chatInterface.scrollTop = chatInterface.scrollHeight;
+                });
+            });
+            
+            console.log('EduBridge AI Learning Platform initialized successfully!');
+        });
+
+        
+        function addSampleInteraction() {
+            const chatInterface = document.getElementById('chatInterface');
+            
+            const sampleQuestions = [
+                "Solve: 2x + 5 = 15",
+                "What is 25 + 17?",
+                "What is photosynthesis?",
+                "What's the difference between mean and median?",
+                "Explain past tense vs present tense",
+                "What is a cell structure?",
+                "How do you calculate area and perimeter?",
+                "What is 15% of 200?",
+                "Solve: 3x - 7 = 11",
+                "Explain fractions with examples"
+            ];
+            
+           
+            const sampleContainer = document.createElement('div');
+            sampleContainer.style.margin = '0.5rem 0';
+            
+            const sampleLabel = document.createElement('label');
+            sampleLabel.textContent = '💡 Try a sample question: ';
+            sampleLabel.style.fontSize = '0.9rem';
+            sampleLabel.style.color = '#6b7280';
+            
+            const sampleSelect = document.createElement('select');
+            sampleSelect.className = 'language-selector';
+            sampleSelect.style.marginLeft = '0.5rem';
+            
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Choose a sample question...';
+            sampleSelect.appendChild(defaultOption);
+            
+            sampleQuestions.forEach(question => {
+                const option = document.createElement('option');
+                option.value = question;
+                option.textContent = question;
+                sampleSelect.appendChild(option);
+            });
+            
+            sampleSelect.onchange = function() {
+                if (this.value) {
+                    const chatInput = document.getElementById('chatInput');
+                    chatInput.value = this.value;
+                    chatInput.focus();
+                    this.value = ''; // Reset dropdown
+                }
+            };
+            
+            sampleContainer.appendChild(sampleLabel);
+            sampleContainer.appendChild(sampleSelect);
+            
+           
+            const inputGroup = document.querySelector('.input-group');
+            inputGroup.parentNode.insertBefore(sampleContainer, inputGroup);
+        }
+        
+        // Initialize sample interactions after DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(addSampleInteraction, 1000);
+        });
+
+
+         // Add newsletter form functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const emailInput = this.querySelector('input[type="email"]');
+                    if (emailInput.value) {
+                        alert('Thank you for subscribing to our newsletter!');
+                        emailInput.value = '';
+                    }
+                });
+            }
+        })
+
+
+
+        
+
+    </script>
+</body>
+</html>

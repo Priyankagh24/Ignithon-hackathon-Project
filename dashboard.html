@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Dashboard - EduBridge</title>
+  <style>
+    :root {
+      --primary-blue: #2563eb;
+      --secondary-blue: #1e40af;
+      --light-bg: #f9fafb;
+      --card-bg: #ffffff;
+      --dark-text: #1f2937;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--light-bg);
+      color: var(--dark-text);
+      text-align: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: var(--primary-blue);
+      margin-bottom: 1rem;
+    }
+
+    .quiz-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .question {
+      margin: 1.5rem 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    .options {
+      margin: 1rem 0;
+      text-align: left;
+    }
+
+    .options input {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .options label {
+      display: block;
+      background: #f3f4f6;
+      margin: 0.5rem 0;
+      padding: 0.7rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .options input:checked + label {
+      background: var(--primary-blue);
+      color: white;
+      font-weight: bold;
+    }
+
+    button {
+      background: var(--primary-blue);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      margin-top: 1.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: var(--secondary-blue);
+    }
+
+    .result {
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--secondary-blue);
+      display: none;
+      animation: pop 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Your Learning Dashboard 🎓</h1>
+  <p>Challenge yourself with current affairs & GK quizzes!</p>
+
+  <div class="quiz-container">
+    <form id="quizForm">
+      <!-- Q1 -->
+      <div class="question">1. Who won the FIFA World Cup 2022?</div>
+      <div class="options">
+        <input type="radio" id="q1a" name="q1" value="France">
+        <label for="q1a">France</label>
+
+        <input type="radio" id="q1b" name="q1" value="Argentina">
+        <label for="q1b">Argentina</label>
+
+        <input type="radio" id="q1c" name="q1" value="Brazil">
+        <label for="q1c">Brazil</label>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question">2. Who is the current UN Secretary-General (2025)?</div>
+      <div class="options">
+        <input type="radio" id="q2a" name="q2" value="Antonio Guterres">
+        <label for="q2a">Antonio Guterres</label>
+
+        <input type="radio" id="q2b" name="q2" value="Ban Ki-moon">
+        <label for="q2b">Ban Ki-moon</label>
+
+        <input type="radio" id="q2c" name="q2" value="Kofi Annan">
+        <label for="q2c">Kofi Annan</label>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question">3. Chandrayaan-3 mission by India successfully landed on which part of the Moon?</div>
+      <div class="options">
+        <input type="radio" id="q3a" name="q3" value="North Pole">
+        <label for="q3a">North Pole</label>
+
+        <input type="radio" id="q3b" name="q3" value="South Pole">
+        <label for="q3b">South Pole</label>
+
+        <input type="radio" id="q3c" name="q3" value="Equator">
+        <label for="q3c">Equator</label>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question">4. The Nobel Peace Prize 2023 was awarded to?</div>
+      <div class="options">
+        <input type="radio" id="q4a" name="q4" value="Narges Mohammadi">
+        <label for="q4a">Narges Mohammadi</label>
+
+        <input type="radio" id="q4b" name="q4" value="Malala Yousafzai">
+        <label for="q4b">Malala Yousafzai</label>
+
+        <input type="radio" id="q4c" name="q4" value="Barack Obama">
+        <label for="q4c">Barack Obama</label>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question">5. Which country recently became the newest member of BRICS (2024)?</div>
+      <div class="options">
+        <input type="radio" id="q5a" name="q5" value="Saudi Arabia">
+        <label for="q5a">Saudi Arabia</label>
+
+        <input type="radio" id="q5b" name="q5" value="Germany">
+        <label for="q5b">Germany</label>
+
+        <input type="radio" id="q5c" name="q5" value="Japan">
+        <label for="q5c">Japan</label>
+      </div>
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+
+    <div id="result" class="result"></div>
+    <a href="pro.html" class="btn">Go to Pro Page</a>
+  </div>
+
+  <script>
+    document.getElementById("quizForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let score = 0;
+
+      // Correct Answers
+      const answers = {
+        q1: "Argentina",
+        q2: "Antonio Guterres",
+        q3: "South Pole",
+        q4: "Narges Mohammadi",
+        q5: "Saudi Arabia"
+      };
+
+      // Check answers
+      for (let key in answers) {
+        let selected = document.querySelector(`input[name="${key}"]:checked`);
+        if (selected && selected.value === answers[key]) {
+          score++;
+        }
+      }
+
+      // Show result
+      const resultBox = document.getElementById("result");
+      resultBox.style.display = "block";
+      resultBox.textContent = `🎉 You scored ${score} / ${Object.keys(answers).length}!`;
+
+      // Add playful messages
+      if (score === 5) {
+        resultBox.textContent += " 🏆 Outstanding!";
+      } else if (score >= 3) {
+        resultBox.textContent += " 👍 Good attempt!";
+      } else {
+        resultBox.textContent += " 📖 Keep improving!";
+      }
+    });
+  </script>
+</body>
+</html>
